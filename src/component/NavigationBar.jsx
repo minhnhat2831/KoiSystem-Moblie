@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Modal, Image } from 'react-native';
 import { Menu, X } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../context/AuthContext';
+import userIcon from '../assets/avatar.jpg'; 
 
-const navItems = [
-  { label: "Home", href: "Home" },
-  { label: "Login", href: "Login" },
-  { label: "Register", href: "Register" },
-  { label: "Contact" ,href: ""},
-];
-
-const NavigationBar = ({ navigation }) => {
+const NavigationBar = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
+  const { user, logout } = useAuth();
 
   const toggleMenu = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const handleLogout = () => {
+    logout();
+    toggleMenu();
+    navigation.replace("Home");
+  };
+
+  const navItems = user
+    ? [
+        { label: "Home", href: "Home" },
+        { label: "Koi Buying Trip", href: "TripList" },
+        { label: "Koi Varietiy", href: "KoiVariety" },
+        { label: "Koi Farm" , href : "KoiFarm"},
+        { label: "Log Out", action: handleLogout },
+      ]
+    : [
+        { label: "Home", href: "Home" },
+        { label: "Login", href: "Login" },
+        { label: "Register", href: "Register" },
+        { label: "Contact", href: "Contact" },
+      ];
 
   return (
     <>
@@ -38,12 +57,32 @@ const NavigationBar = ({ navigation }) => {
             <TouchableOpacity onPress={toggleMenu} style={styles.closeButton}>
               <X size={24} color="#fff" />
             </TouchableOpacity>
+
+            {user && (
+              <View style={styles.userInfo}>
+                <TouchableOpacity onPress={() => {
+                  toggleMenu();
+                  navigation.navigate("UserProfile");
+                }}>
+                <Image
+                  source={user.ImageUser ? { uri: user.ImageUser } : userIcon}
+                  style={styles.userIcon}
+                />
+                </TouchableOpacity>
+                <Text style={styles.userName}>{user.username}</Text>
+              </View>
+            )}
+
             {navItems.map((item) => (
               <TouchableOpacity
                 key={item.label}
                 onPress={() => {
-                  navigation.navigate(item.href);
-                  toggleMenu();
+                  if (item.action) {
+                    item.action();
+                  } else {
+                    navigation.navigate(item.href);
+                    toggleMenu();
+                  }
                 }}
                 style={styles.menuItem}
               >
@@ -58,6 +97,15 @@ const NavigationBar = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  userInfo: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  userName: {
+    fontSize: 18,
+    color: 'white',
+    marginTop: 8,
+  },
   navContainer: {
     position: 'absolute', 
     width: '100%',
@@ -79,6 +127,7 @@ const styles = StyleSheet.create({
   },
   menuButton: {
     padding: 8,
+    
   },
   modalOverlay: {
     flex: 1,
@@ -94,6 +143,12 @@ const styles = StyleSheet.create({
   closeButton: {
     alignSelf: 'flex-end',
     padding: 10,
+  },
+  userIcon: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginBottom: 20,
   },
   menuItem: {
     paddingVertical: 15,

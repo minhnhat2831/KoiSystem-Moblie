@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet, Alert, ActivityIndicator, ImageBackground } from "react-native";
 import axios from "axios";
 import img from "../assets/Koi1.png"; 
+import API from "../api";
 
 const Register = () => {
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,7 +18,7 @@ const Register = () => {
     setError("");
     setIsLoading(true);
 
-    if (!username || !firstName || !lastName || !phone || !password || !confirmPassword) {
+    if (!email || !username || !fullName || !phone || !password || !confirmPassword) {
       setError("All fields are required");
       setIsLoading(false);
       return;
@@ -30,10 +31,10 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("http://192.168.1.234:7043/Register", {
+      const response = await API.post("/Register", {
+        email,
         username,
-        firstName,
-        lastName,
+        fullName,
         phone,
         password,
       });
@@ -55,22 +56,22 @@ const Register = () => {
         <Text style={styles.title}>SIGN UP</Text>
         <TextInput
           style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
         />
         <TextInput
           style={styles.input}
-          placeholder="First Name"
-          value={firstName}
-          onChangeText={setFirstName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Last Name"
-          value={lastName}
-          onChangeText={setLastName}
-        />
+          placeholder="Full Name"
+          value={fullName}
+          onChangeText={setFullName}
+        />       
         <TextInput
           style={styles.input}
           placeholder="Phone Number"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';  
 import image from '../assets/Koi Farm.jpg';
 
 const trips = [
@@ -9,9 +10,11 @@ const trips = [
   { id: 4, name: "Golden Fields", image },
 ];
 
-const TripPanel = ({ trip, navigation }) => {
+const TripPanel = ({ trip }) => {
+  const navigation = useNavigation();
+  
   return (
-    <TouchableOpacity style={styles.tripPanel} onPress={() => navigation.navigate('TripDetail', { id: trip.id })}>
+    <TouchableOpacity style={styles.tripPanel} onPress={() => {}}>
       <Image source={trip.image} style={styles.tripImage} />
       <View style={styles.overlay}>
         <Text style={styles.tripText}>{trip.name}</Text>
@@ -20,36 +23,54 @@ const TripPanel = ({ trip, navigation }) => {
   );
 };
 
-const TripHome = ({ navigation }) => {
+const TripHome = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Our Trips</Text>
       {trips.map((trip) => (
-        <TripPanel key={trip.id} trip={trip} navigation={navigation} />
+        <TripPanel key={trip.id} trip={trip} />
       ))}
+      <TouchableOpacity onPress={() => navigation.navigate('TripList')}>
+        <Text style={{ color: 'blue', fontSize: 16 }}>View All</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 17, backgroundColor: '#bd9d9d', bottom : 15 },
-  title: {
-      fontSize: 32,
-      fontWeight: 'bold',
-      marginBottom: 8, 
-      color: 'black'      
-    },
-  tripPanel: {   
-     marginBottom: 25, 
-     borderRadius: 8, 
-     overflow: 'hidden'
-    },
+  container: { 
+    padding: 17, 
+    backgroundColor: '#bd9d9d', 
+    bottom : 15 
+  },
+  title: { 
+    fontSize: 32, 
+    fontWeight: 'bold', 
+    marginBottom: 8, 
+    color: 'black' 
+  },
+  tripPanel: { 
+    marginBottom: 25, 
+    borderRadius: 8, 
+    overflow: 'hidden' 
+  },
   tripImage: { 
     width: '100%', 
     height: 200 
   },
-  overlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0, 0, 0, 0.5)', justifyContent: 'center', alignItems: 'center' },
-  tripText: { color: 'white', fontSize: 24, fontWeight: 'bold' },
+  overlay: { 
+    ...StyleSheet.absoluteFillObject, 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    justifyContent: 'center', 
+    alignItems: 'center' 
+  },
+  tripText: { 
+    color: 'white', 
+    fontSize: 24, 
+    fontWeight: 'bold' 
+  },
 });
 
 export default TripHome;

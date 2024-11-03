@@ -5,10 +5,10 @@ import ViewPage from '../View/ViewPage';
 import IntroductionHome from '../View/IntroductionHome';
 import TripHome from '../View/TripHome';
 
-const HomePage = ({ navigation }) => {
+const HomePage = () => {
   return (
     <View style={styles.container}>
-      <NavigationBar navigation={navigation} />
+      <NavigationBar />
       <ScrollView style={styles.scrollView}>
         <View style={styles.contentContainer}>
           <ViewPage />
