@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, TextInput, Button } from 'react-native';
 import API from '../api.js'; 
+import { useAuth } from '../context/AuthContext.js';
 
 const OrderHistoryScreen = ({ navigation }) => {
+  const { user } = useAuth();
   const [orderHistories, setOrderHistories] = useState([]);
   const [filteredHistories, setFilteredHistories] = useState([]);
   const [searchDate, setSearchDate] = useState('');
@@ -12,6 +14,7 @@ const OrderHistoryScreen = ({ navigation }) => {
     const fetchOrderHistories = async () => {
       try {
         const response = await API.get('api/OrderHistories');
+        console.log(response.data);
         setOrderHistories(response.data.Data || []);
         setFilteredHistories(response.data.Data || []);
       } catch (error) {
@@ -57,8 +60,7 @@ const OrderHistoryScreen = ({ navigation }) => {
         data={filteredHistories}
         keyExtractor={(item) => item.OrderHistoryId.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.orderCard} onPress={() => handleViewDetails(item)}>
-            <Text style={styles.orderText}>Order ID: {item.OrderHistoryId}</Text>
+          <TouchableOpacity style={styles.orderCard} onPress={() => handleViewDetails(item)}>            
             <Text style={styles.orderText}>Date: {item.OrderDate ? new Date(item.OrderDate).toLocaleDateString() : 'N/A'}</Text>
             <Text style={styles.orderText}>Total Price: {item.TotalPrice.toLocaleString()} VND</Text>
             <Text style={styles.orderText}>Status: {item.Status}</Text>

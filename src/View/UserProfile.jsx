@@ -33,8 +33,8 @@ const UserProfile = () => {
         <View style={styles.dropdownMenu}>
           <Button title="Edit Profile" onPress={() => {}} />
           <Button title="History Order" onPress={() => nav.navigate('OrderHistory')} />
-          <Button title="Check Ins" onPress={() => {}} />
-          <Button title="Change Password" onPress={() => {}} />
+          <Button title="Check Ins" onPress={() => nav.navigate('CheckIn')} />
+          <Button title="Change Password" onPress={() => nav.navigate('ForgotPassword')} />
         </View>
       )}
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 20,
+    padding: 10,
     backgroundColor: '#bda662',
   },
   menuButton: {

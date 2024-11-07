@@ -8,45 +8,6 @@ const TripListScreen = () => {
   const [trips, setTrips] = useState([]);
   const navigation = useNavigation();
 
-  const mockTrips = [
-    {
-      TripId: 1,
-      Transportation: 'Bus',
-      TripDate: '2024-11-05',
-      Price: 150000,
-      Duration: '2 hours',
-      MeetingLocation: 'City Center',
-      MaxParticipants: 30,
-      MinParticipants: 5,
-      SpecialInstructions: 'Bring water and snacks.',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9QFatgDlIqaddiyJyF0gfkMybiMgvssODzw&s', 
-    },
-    {
-      TripId: 2,
-      Transportation: 'Train',
-      TripDate: '2024-11-10',
-      Price: 200000,
-      Duration: '3 hours',
-      MeetingLocation: 'Central Station',
-      MaxParticipants: 50,
-      MinParticipants: 10,
-      SpecialInstructions: 'Arrive 30 minutes early.',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9QFatgDlIqaddiyJyF0gfkMybiMgvssODzw&s', 
-    },
-    {
-      TripId: 3,
-      Transportation: 'Airplane',
-      TripDate: '2024-11-15',
-      Price: 500000,
-      Duration: '1 hour',
-      MeetingLocation: 'Airport',
-      MaxParticipants: 100,
-      MinParticipants: 20,
-      SpecialInstructions: 'Check in online.',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9QFatgDlIqaddiyJyF0gfkMybiMgvssODzw&s', 
-    },
-  ];
-
   useEffect(() => {
     const fetchTrips = async () => {
       try {

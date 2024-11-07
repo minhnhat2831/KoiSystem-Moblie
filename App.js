@@ -15,6 +15,11 @@ import KoiFishScreen from './src/View/KoiFish';
 import KoiFishDetailScreen from './src/View/KoiDetail';
 import OrderHistoryScreen from './src/View/OrderHistory';
 import OrderDetailScreen from './src/View/OrderKoiDetail';
+import CheckInScreen from './src/View/CheckIn';
+import ForgotPassword from './src/View/ForgotPassword';
+import ResetPassword from './src/View/ResetPassword';
+import TripBooking from './src/View/TripBooking';
+import BookingSuccessScreen from './src/View/BookingSuccess';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +31,8 @@ export default function App() {
           <Stack.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={RegisterPage} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+          <Stack.Screen name="ResetPassword" component={ResetPassword} />
           <Stack.Screen name="UserProfile" component={UserProfile} />
           <Stack.Screen name="TripList" component={TripListScreen} />
           <Stack.Screen name="KoiVariety" component={KoiListScreen} options={{ title: 'Koi Varietiy' }} />
@@ -35,6 +42,9 @@ export default function App() {
           <Stack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: 'Trip Details' }} />
           <Stack.Screen name="OrderHistory" component={OrderHistoryScreen} options={{ title: 'Order History' }} />
           <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} options={{ title: 'Order History' }} />
+          <Stack.Screen name="CheckIn" component={CheckInScreen} options={{ title: 'Check in' }} />
+          <Stack.Screen name="TripBooking" component={TripBooking} options={{ title: 'Trip Booking' }} />
+          <Stack.Screen name="BookSuccess" component={BookingSuccessScreen} options={{ title: 'Trip Booking' }} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast />

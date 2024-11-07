@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://73aa-1-55-80-89.ngrok-free.app", //Thay đổi để kết nối với BE
+  baseURL: "https://c6ad-2405-4802-8150-5810-1948-6601-18e4-ea9a.ngrok-free.app", 
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",

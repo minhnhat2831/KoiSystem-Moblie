@@ -1,8 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Button } from 'react-native';
 
 const TripDetailScreen = ({ route }) => {
   const { trip } = route.params;
+  const nav = useNavigation('');
 
   return (
     <ScrollView style={styles.container}>
@@ -15,7 +17,7 @@ const TripDetailScreen = ({ route }) => {
       <Text style={styles.detailText}>Min Participants: {trip.MinParticipants ?? 'N/A'}</Text>
       <Text style={styles.detailText}>Special Instructions: {trip.SpecialInstructions}</Text>
       <View style={styles.buttonContainer}>
-        <Button title="Order" onPress={() => console.log('Order button pressed')} />
+        <Button title="Order" onPress={() => nav.navigate('TripBooking', { trip })} />
       </View>
     </ScrollView>
   );

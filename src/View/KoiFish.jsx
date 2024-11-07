@@ -33,6 +33,7 @@ const KoiFishScreen = ({ route }) => {
             style={styles.koiCard}
             onPress={() => navigation.navigate('KoiFishDetailScreen', { koi: item })}
           >
+            <Text style={styles.koiText}>Color: {item.Color} </Text>
             <Text style={styles.koiText}>Length: {item.Length} kg</Text>
             <Text style={styles.koiText}>Weight: {item.Weight} kg</Text>
             <Text style={styles.koiText}>Price: {item.Price.toLocaleString()} VND</Text>

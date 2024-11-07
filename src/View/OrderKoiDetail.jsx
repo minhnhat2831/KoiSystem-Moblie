@@ -32,8 +32,6 @@ const OrderDetailScreen = ({ route }) => {
           <Text style={styles.detailText}>Order ID: {order.OrderHistoryId}</Text>
           <Text style={styles.detailText}>Total Price: {order.TotalPrice.toLocaleString()} VND</Text>
           <Text style={styles.detailText}>Status: {order.Status}</Text>
-          <Text style={styles.detailText}>Delivery Method: {order.DeliveryMethod}</Text>
-          <Text style={styles.detailText}>Special Instructions: {order.SpecialInstructions}</Text>
           <Text style={styles.detailText}>Order Date: {formattedOrderDate}</Text>
         </View>
       </View>

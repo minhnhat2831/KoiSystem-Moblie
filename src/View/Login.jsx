@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, ImageBackground, ActivityIndicator, Alert } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, ImageBackground, ActivityIndicator, Alert, TouchableOpacity } from "react-native";
 import img from "../assets/Koi1.png";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
@@ -8,7 +8,7 @@ import  API  from "../api";
  
 export default function Login() {
   const { login } = useAuth();
-  const [email, setEmail] = useState("vana@example.com");
+  const [email, setEmail] = useState("vana@gmail.com");
   const [password, setPassword] = useState("password123");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +43,7 @@ export default function Login() {
       }
     } catch (err) {
       console.log(err);
-      setError(err.response?.data?.message || "Có lỗi xảy ra trong quá trình đăng nhập.");
+      setError(err.response?.data?.message || "Sai email hoặc mật khẩu");
     } finally {
       setIsLoading(false);
     }
@@ -76,9 +76,14 @@ export default function Login() {
                 onPress={handleSubmit}
                 disabled={isLoading}
             />
-            <Text style={styles.forgotPassword}>Forgot password?</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+              <Text style={styles.forgotPassword}>Forgot password?</Text>
+            </TouchableOpacity>
             <Text style={styles.signupPrompt}>
-                Don't have an account? <Text style={styles.signupLink}>Sign up</Text>
+                Don't have an account? 
+                <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                  <Text style={styles.signupLink}>Sign up</Text>
+                </TouchableOpacity>
             </Text>
         </View>
     </ImageBackground>

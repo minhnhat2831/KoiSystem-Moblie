@@ -10,6 +10,20 @@ const trips = [
   { id: 4, name: "Golden Fields", image },
 ];
 
+const SunnyMeadows = 
+  {
+    TripId: 1,
+      Transportation: 'Bus',
+      TripDate: '2024-11-05',
+      Price: 150000,
+      Duration: '2 hours',
+      MeetingLocation: 'City Center',
+      MaxParticipants: 30,
+      MinParticipants: 5,
+      SpecialInstructions: 'Bring water and snacks.',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9QFatgDlIqaddiyJyF0gfkMybiMgvssODzw&s', 
+  };
+
 const TripPanel = ({ trip }) => {
   const navigation = useNavigation();
   
