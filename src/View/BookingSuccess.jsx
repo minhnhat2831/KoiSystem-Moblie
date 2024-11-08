@@ -4,7 +4,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 const BookingSuccessScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Booking Successful!</Text>
+      <Text style={styles.title}>Order Successful!</Text>
       <Text style={styles.successMessage}>Your booking was successful. Thank you for choosing us!</Text>
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
     </View>

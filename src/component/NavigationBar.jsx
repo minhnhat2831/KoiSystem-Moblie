@@ -32,7 +32,7 @@ const NavigationBar = () => {
         { label: "Home", href: "Home" },
         { label: "Login", href: "Login" },
         { label: "Register", href: "Register" },
-        { label: "Contact", href: "Contact" },
+        { label: "About Us", href: "AboutUs" },
       ];
 
   return (

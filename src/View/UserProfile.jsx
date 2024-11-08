@@ -32,8 +32,6 @@ const UserProfile = () => {
       {menuVisible && (
         <View style={styles.dropdownMenu}>
           <Button title="Edit Profile" onPress={() => {}} />
-          <Button title="History Order" onPress={() => nav.navigate('OrderHistory')} />
-          <Button title="Check Ins" onPress={() => nav.navigate('CheckIn')} />
           <Button title="Change Password" onPress={() => nav.navigate('ForgotPassword')} />
         </View>
       )}
@@ -47,12 +45,6 @@ const UserProfile = () => {
         ))}
       </View>
 
-      {/* Contact Footer */}
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>Contact us:</Text>
-        <Text style={styles.footerText}>Email: support@example.com</Text>
-        <Text style={styles.footerText}>Phone: +123 456 7890</Text>
-      </View>
     </View>
   );
 };

@@ -20,6 +20,18 @@ import ForgotPassword from './src/View/ForgotPassword';
 import ResetPassword from './src/View/ResetPassword';
 import TripBooking from './src/View/TripBooking';
 import BookingSuccessScreen from './src/View/BookingSuccess';
+import OrderFish from './src/View/OrderKoi';
+import KoiManagementScreen from './src/View/KoiManagement';
+import StaffHome from './src/View/StaffPage';
+import AddKoiScreen from './src/View/AddKoi';
+import AddTripScreen from './src/View/AddTrip';
+import AddFarmScreen from './src/View/AddFarm';
+import FarmManagementScreen from './src/View/FarmManagement';
+import TripManagementScreen from './src/View/TripManagement';
+import AboutUs from './src/View/AboutUs';
+import EditKoi from './src/View/EditKoi';
+import EditFarm from './src/View/EditFarm';
+import EditTrip from './src/View/EditTrip';
 
 const Stack = createStackNavigator();
 
@@ -44,7 +56,19 @@ export default function App() {
           <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} options={{ title: 'Order History' }} />
           <Stack.Screen name="CheckIn" component={CheckInScreen} options={{ title: 'Check in' }} />
           <Stack.Screen name="TripBooking" component={TripBooking} options={{ title: 'Trip Booking' }} />
-          <Stack.Screen name="BookSuccess" component={BookingSuccessScreen} options={{ title: 'Trip Booking' }} />
+          <Stack.Screen name="BookSuccess" component={BookingSuccessScreen} options={{ title: 'Booking Success' }} />
+          <Stack.Screen name="OrderKoi" component={OrderFish} options={{ title: 'Order Koi' }} />
+          <Stack.Screen name="StaffHome" component={StaffHome} options={{ title: 'Staff Dashboard' }} />
+          <Stack.Screen name="KoiManagement" component={KoiManagementScreen}  />
+          <Stack.Screen name="AddKoi" component={AddKoiScreen} />
+          <Stack.Screen name="AddTrip" component={AddTripScreen} />
+          <Stack.Screen name="AddFarm" component={AddFarmScreen} />
+          <Stack.Screen name="EditKoi" component={EditKoi} />
+          <Stack.Screen name="EditFarm" component={EditFarm} />
+          <Stack.Screen name="EditTrip" component={EditTrip} />
+          <Stack.Screen name="FarmManagement" component={FarmManagementScreen} />
+          <Stack.Screen name="TripManagement" component={TripManagementScreen} />
+          <Stack.Screen name="AboutUs" component={AboutUs} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast />

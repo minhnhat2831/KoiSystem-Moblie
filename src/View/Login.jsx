@@ -8,8 +8,8 @@ import  API  from "../api";
  
 export default function Login() {
   const { login } = useAuth();
-  const [email, setEmail] = useState("vana@gmail.com");
-  const [password, setPassword] = useState("password123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
@@ -19,27 +19,48 @@ export default function Login() {
   const handleSubmit = async () => {
     setError("");
     setIsLoading(true);
-
+  
     if (!email || !password) {
       setError("Email và mật khẩu không được để trống.");
       setIsLoading(false);
       return;
     }
-
+  
     if (!validateEmail(email)) {
       setError("Vui lòng nhập email hợp lệ.");
       setIsLoading(false);
       return;
     }
-
+  
     try {
       const response = await API.post("/Authentication/Login", { email, password });
       if (response.status === 200) {
         const { Token, User } = response.data;
         Toast.show({ type: "success", text1: "Đăng nhập thành công" });
         console.log("User logged in:", User);
+  
         login(User, Token);
-        navigation.replace("Home");
+  
+        // Role-based navigation
+        switch (User.RoleId) {
+          case 1:  
+            navigation.replace("Manager");
+            break;
+          case 2:  
+            navigation.replace("Home");
+            break;
+          case 3:  
+            navigation.navigate("StaffHome"); 
+            break;
+          case 4:  
+            navigation.navigate("StaffHome")
+            break;
+          case 5:  
+            navigation.replace("DeliveryHome");
+            break;
+          default:
+            navigation.replace("Home");
+        }
       }
     } catch (err) {
       console.log(err);

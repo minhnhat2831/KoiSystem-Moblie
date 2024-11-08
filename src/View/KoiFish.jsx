@@ -13,6 +13,7 @@ const KoiFishScreen = ({ route }) => {
       try {
         const response = await API.get(`api/KoiFishVarieties/${koiVarietyId}`);
         setKoiFishes(response.data.Data.KoiFishes || []);
+        console.log(response.data);
         console.log('Fetched Koi Fishes:', response.data.Data.KoiFishes);
       } catch (error) {
         console.error('Error fetching Koi fish:', error);
